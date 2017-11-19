@@ -102,7 +102,7 @@
 								</div>
 							    <div class="form-group"> --%>
 							      <label for="name">Recharge:</label>
-							      <input type="number" class="form-control" id="balance" placeholder="Enter the amount" name="balance"/>
+							      <input type="number" min=0 class="form-control" id="balance" placeholder="Enter the amount" name="balance"/>
 							    </div>
 							    <button type="submit" class="btn btn-default modal-action">Recharge</button>
 							    

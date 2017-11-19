@@ -25,12 +25,13 @@ public class Customer {
 	private String balance;
 	private String blocked;
 	private String uuid;
+	private String filePath;
 	
 	public Customer() {
 		super();
 	}
 	public Customer(int id, String name, String dob, String contact, String email, String balance, String blocked,
-			String uuid) {
+			String uuid, String filePath) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -40,6 +41,16 @@ public class Customer {
 		this.balance = balance;
 		this.blocked = blocked;
 		this.uuid = uuid;
+		this.filePath = filePath;
+	}
+	
+	
+	
+	public String getFilePath() {
+		return filePath;
+	}
+	public void setFilePath(String filePath) {
+		this.filePath = filePath;
 	}
 	public int getId() {
 		return id;

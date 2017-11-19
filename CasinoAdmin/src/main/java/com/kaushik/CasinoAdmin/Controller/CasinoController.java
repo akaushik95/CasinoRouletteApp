@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.kaushik.CasinoAdmin.Model.Customer;
 import com.kaushik.CasinoAdmin.Model.Recharge;
@@ -60,8 +62,8 @@ public class CasinoController implements ErrorController {
 	
 	@CrossOrigin
 	@PostMapping(value= "/customer/add")
-	public String addCustomer(@ModelAttribute Customer c, Model model){
-		service.addCustomer(c, model);
+	public String addCustomer(@ModelAttribute Customer c, Model model, @RequestParam("file") MultipartFile file){
+		service.addCustomer(c, model, file);
 		return "redirect:/RegisterCustomer";
 		
 	}

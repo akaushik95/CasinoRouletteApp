@@ -1,5 +1,7 @@
 package com.kaushik.CasinoAdmin.Service;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.Iterator;
 import java.util.Random;
 
@@ -11,6 +13,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.kaushik.CasinoAdmin.Model.Customer;
 import com.kaushik.CasinoAdmin.Model.GameResult;
@@ -20,7 +23,7 @@ import com.kaushik.CasinoAdmin.Repository.CasinoRepository;
 @Service
 public class CasinoService {
 	
-	private static final String CHAR_LIST = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890";
+	private static final String CHAR_LIST = "abcdefghijk1234567890lmnopqr1234567890stuvwxyz1234567890ABCDEFG1234567890HIJKLMNO1234567890PQRSTUVWXYZ1234567890";
 	private static final int RANDOM_STRING_LENGTH = 10;
 	    
 	public static String generateRandomString(){
@@ -69,13 +72,28 @@ public class CasinoService {
 	    return repository.findAll();
 	}
 	
-	public void addCustomer(@ModelAttribute Customer c, Model model){
+	public void addCustomer(@ModelAttribute Customer c, Model model, MultipartFile file){
 		model.addAttribute("Customer",c);
 		c.setBalance("500");
 		c.setBlocked("0");
 		String uuid = generateRandomString();
 		c.setUuid(uuid);
+		System.out.println("file being uploaded");
+		c.setFilePath(addImage(c, file));
 		repository.save(c);
+	}
+	
+	public String addImage(Customer customer, MultipartFile file) {
+		String filePath = System.getProperty("user.dir").replaceAll("\\\\" , "/") + "/src/main/IDS/" + customer.getUuid() + ".jpg";
+		File saveFile = new File(filePath);
+		try {
+			file.transferTo(saveFile);
+		} catch (IllegalStateException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return filePath;
 	}
 	
 	public void rechargeCustomer(int id, @RequestBody Recharge recharge){
@@ -182,4 +200,5 @@ public class CasinoService {
 		repository.save(c);
 		return gs;
 	}
+
 }

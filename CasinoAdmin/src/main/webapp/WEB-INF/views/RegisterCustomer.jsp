@@ -27,7 +27,7 @@
 
 <div class="container">
 	<c:url var="addAction" value="/customer/add" ></c:url>
-  <form action="${addAction}" method="post" modelAttribute="customer">
+  <form action="${addAction}" method="post" modelAttribute="customer" enctype="multipart/form-data">
     <div class="form-group">
       <label for="name">Name:</label>
       <input path="name" type="text" class="form-control" id="name" placeholder="Enter Name" name="name" required="true"/>
@@ -45,8 +45,8 @@
       <input path="email" type="email" class="form-control" id="email" placeholder="Enter email id" name="email" required="true"/>
     </div>
     <div class="form-group">
-      <label for="idproof">IdProof:</label>
-      <input type="file" class="form-control" id="idproof" placeholder="Select file" name="idproof">
+      <label for="file">IdProof:</label>
+      <input type="file" class="form-control" id="file" placeholder="Select file" name="file">
     </div>
     <button id="submitButton" type="submit" class="btn btn-default">Submit</button>
   </form>
