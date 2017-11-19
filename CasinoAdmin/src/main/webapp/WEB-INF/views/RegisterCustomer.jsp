@@ -12,8 +12,37 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-<script src="<c:url value="/resources/js/script.js" />" type="text/javascript"></script>
+<%-- <script src="<c:url value="/resources/js/script.js" />" type="text/javascript"></script> --%>
+<script type="text/javascript">
+function hello() {
+	var dateString = document.getElementById("dob").value;
+	if(dateString !=""){
+	    var today = new Date();
+	    var birthDate = new Date(dateString);
+	    var age = today.getFullYear() - birthDate.getFullYear();
+	    var m = today.getMonth() - birthDate.getMonth();
+	    var da = today.getDate() - birthDate.getDate();
+	    if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
+	        age--;
+	    }
+	    if(m<0){
+	        m +=12;
+	    }
+	    if(da<0){
+	        da +=30;
+	    }
 
+	  	if(age < 18 || age > 100){
+			alert("Age "+age+" is restricted");
+			document.getElementById("dob").value="";
+	  	}else{
+			alert("Age "+age+" is allowed");
+	  	}
+	}else{
+		alert("please provide your date of birth");
+	}
+}
+</script>
 </head>
 <body style="margin: 10px">
 <nav class="navbar navbar-inverse">
@@ -30,11 +59,11 @@
   <form action="${addAction}" method="post" modelAttribute="customer" enctype="multipart/form-data">
     <div class="form-group">
       <label for="name">Name:</label>
-      <input path="name" type="text" class="form-control" id="name" placeholder="Enter Name" name="name" required="true"/>
+      <input path="name" type="text" class="form-control" id="name" pattern="[a-zA-Z]{0,}" placeholder="Enter Name minimum 1 letters" name="name" required="true"/>
     </div>
     <div class="form-group">
       <label for="date">DOB:</label>
-      <input path="dob" type="date" class="form-control" id="dob" placeholder="Enter date of birth" name="dob" required="true"/>
+      <input path="dob" type="date" class="form-control" id="dob" placeholder="Enter date of birth" name="dob" required="true"  onblur="hello()"/>
     </div>
     <div class="form-group">
       <label for="contact">Contact:</label>
