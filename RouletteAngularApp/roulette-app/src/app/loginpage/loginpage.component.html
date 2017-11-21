@@ -1,0 +1,42 @@
+<body>
+
+  <div style="background-color: darkgreen; height: 100px;">
+    <h1 style="font-size: 80px; font-weight: bold; margin-left: 10px; margin-top: 0">Roulette</h1>
+  </div>
+
+  <div style="width: 100%; text-align: center">
+    <div style="margin-top: 200px; text-align: center">
+      <div style="text-align: center" class="form-inline">
+        <label>Enter your Unique ID:</label>
+        <input style="width: 200px" class="form-control" #uuid type="text" placeholder="unique id" id="uuid">
+        <br>
+        <br>
+        <button class="btn btn-default btn-lg"  style="background-color: darkgreen" (click)="validateCustomer(uuid.value)">Start Playing</button>
+      </div>
+    </div>
+  </div>
+
+  <div [hidden]="hide" id="hiddendiv" class="container">
+    <button  id="modalbutton" class="btn btn-default btn-lg"  style="background-color: darkgreen" data-toggle="modal" data-target="#myModal">Is valid</button>
+
+  </div>
+  <div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Invalid Customer</h4>
+        </div>
+        <div class="modal-body">
+          <p>Please enter a valid customer id.</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</body>
+
