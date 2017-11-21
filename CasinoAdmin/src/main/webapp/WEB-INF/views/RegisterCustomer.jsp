@@ -59,7 +59,7 @@ function hello() {
   <form action="${addAction}" method="post" modelAttribute="customer" enctype="multipart/form-data">
     <div class="form-group">
       <label for="name">Name:</label>
-      <input path="name" type="text" class="form-control" id="name" pattern="[a-zA-Z]{0,}" placeholder="Enter Name minimum 1 letters" name="name" required="true"/>
+      <input path="name" type="text" class="form-control" id="name" pattern="[a-zA-Z ]{0,}" placeholder="Enter Name minimum 1 letters" name="name" required="true"/>
     </div>
     <div class="form-group">
       <label for="date">DOB:</label>
@@ -75,7 +75,7 @@ function hello() {
     </div>
     <div class="form-group">
       <label for="file">IdProof:</label>
-      <input type="file" class="form-control" id="file" placeholder="Select file" name="file">
+      <input type="file" class="form-control" id="file" placeholder="Select file" name="file" required="true">
     </div>
     <button id="submitButton" type="submit" class="btn btn-default">Submit</button>
   </form>
